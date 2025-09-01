@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class Service extends Model
 {
@@ -18,16 +18,16 @@ class Service extends Model
         'description'
     ];
 
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class);
+    }
+
     protected function casts(): array
     {
         return [
             'duration' => 'integer',
             'price' => 'decimal:2'
         ];
-    }
-
-    public function reservations()
-    {
-        return $this->hasMany(Reservation::class);
     }
 }

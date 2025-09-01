@@ -2,11 +2,11 @@
 
 namespace App\Livewire\Client\Reservations;
 
-use App\Notifications\ReservationCreated;
-use Livewire\Component;
+use App\Models\Reservation;
 use App\Models\Service;
 use App\Models\Slot;
-use App\Models\Reservation;
+use App\Notifications\ReservationCreated;
+use Livewire\Component;
 
 class ReservationForm extends Component
 {
@@ -14,16 +14,6 @@ class ReservationForm extends Component
     public $slots;
     public $service_id;
     public $slot_id;
-
-    public function mount()
-    {
-        $this->services = Service::all();
-        $this->slots = Slot::where('is_available', true)
-            ->orderBy('date')
-            ->orderBy('time')
-            ->get();
-    }
-
     protected $rules = [
         'service_id' => 'required|exists:services,id',
         'slot_id' => 'required|exists:slots,id',
@@ -54,6 +44,15 @@ class ReservationForm extends Component
         session()->flash('success', 'Rezerwacja złożona!');
         $this->reset(['service_id', 'slot_id']);
         $this->mount(); // odśwież listę slotów
+    }
+
+    public function mount()
+    {
+        $this->services = Service::all();
+        $this->slots = Slot::where('is_available', true)
+            ->orderBy('date')
+            ->orderBy('time')
+            ->get();
     }
 
     public function render()

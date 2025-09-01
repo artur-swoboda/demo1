@@ -2,8 +2,8 @@
 
 namespace App\Livewire\Client\Reservations;
 
-use Livewire\Component;
 use App\Models\Reservation;
+use Livewire\Component;
 
 class MyReservations extends Component
 {

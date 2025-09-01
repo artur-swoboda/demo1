@@ -2,15 +2,14 @@
 
 namespace App\Livewire\Admin\Services;
 
+use App\Models\Service;
 use Livewire\Component;
 use Livewire\WithPagination;
-use App\Models\Service;
 
 class Index extends Component
 {
     use WithPagination;
 
-    // formularz
     public $name;
     public $duration = 30;
     public $price = 0.00;
@@ -20,26 +19,10 @@ class Index extends Component
 
     protected $paginationTheme = 'tailwind';
 
-    protected function rules()
-    {
-        return [
-            'name' => 'required|string|max:120',
-            'duration' => 'required|integer|min:5|max:480',
-            'price' => 'required|numeric|min:0',
-            'description' => 'nullable|string|max:1000',
-        ];
-    }
-
     public function render()
     {
         $services = Service::latest()->paginate(2);
         return view('livewire.admin.services.index', compact('services'));
-    }
-
-    public function create()
-    {
-        $this->resetForm();
-        $this->showModal = true;
     }
 
     public function edit($id)
@@ -70,11 +53,10 @@ class Index extends Component
         $this->resetPage();
     }
 
-    public function delete($id)
+    public function create()
     {
-        Service::findOrFail($id)->delete();
-        session()->flash('success', 'Usługa usunięta.');
-        $this->resetPage();
+        $this->resetForm();
+        $this->showModal = true;
     }
 
     private function resetForm()
@@ -85,5 +67,22 @@ class Index extends Component
         $this->price = 0.00;
         $this->description = null;
         $this->resetValidation();
+    }
+
+    public function delete($id)
+    {
+        Service::findOrFail($id)->delete();
+        session()->flash('success', 'Usługa usunięta.');
+        $this->resetPage();
+    }
+
+    protected function rules()
+    {
+        return [
+            'name' => 'required|string|max:120',
+            'duration' => 'required|integer|min:5|max:480',
+            'price' => 'required|numeric|min:0',
+            'description' => 'nullable|string|max:1000',
+        ];
     }
 }

@@ -27,21 +27,6 @@ class Index extends Component
         return view('livewire.admin.slots.index');
     }
 
-    public function create()
-    {
-        $this->resetForm();
-        $this->showModal = true;
-    }
-
-    public function resetForm()
-    {
-        $this->date = '';
-        $this->time = '';
-        $this->is_available = true;
-        $this->slot_id = null;
-        $this->isEditMode = false;
-    }
-
     public function store()
     {
         $this->validate();
@@ -56,6 +41,21 @@ class Index extends Component
 
         $this->showModal = false;
         $this->resetForm();
+    }
+
+    public function create()
+    {
+        $this->resetForm();
+        $this->showModal = true;
+    }
+
+    public function resetForm()
+    {
+        $this->date = '';
+        $this->time = '';
+        $this->is_available = true;
+        $this->slot_id = null;
+        $this->isEditMode = false;
     }
 
     public function edit($id)

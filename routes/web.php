@@ -1,12 +1,12 @@
 <?php
 
 use App\Http\Middleware\IsAdmin;
+use App\Livewire\Admin\Reservations\Index as ReservationsList;
+use App\Livewire\Admin\Services\Index as AdminServicesIndex;
+use App\Livewire\Admin\Slots\Index as AdminSlotsIndex;
 use App\Livewire\Client\Reservations\MyReservations;
 use App\Livewire\Client\Reservations\ReservationForm;
 use Illuminate\Support\Facades\Route;
-use App\Livewire\Admin\Services\Index as AdminServicesIndex;
-use App\Livewire\Admin\Slots\Index as AdminSlotsIndex;
-use App\Livewire\Admin\Reservations\Index as ReservationsList;
 
 Route::get('/', function () {
     return view('welcome');

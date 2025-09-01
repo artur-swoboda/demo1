@@ -18,15 +18,15 @@ class Slot extends Model
         'is_available',
     ];
 
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class);
+    }
+
     protected function casts(): array
     {
         return [
             'date' => 'date:m/d/Y',
         ];
-    }
-
-    public function reservations()
-    {
-        return $this->hasMany(Reservation::class);
     }
 }

@@ -2,9 +2,9 @@
 
 namespace App\Livewire\Admin\Reservations;
 
+use App\Models\Reservation;
 use App\Notifications\ReservationStatusChanged;
 use Livewire\Component;
-use App\Models\Reservation;
 
 class Index extends Component
 {
