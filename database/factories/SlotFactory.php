@@ -1,0 +1,26 @@
+<?php
+
+namespace Database\Factories;
+
+use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Slot;
+
+/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Slot>
+ */
+class SlotFactory extends Factory
+{
+    /**
+     * Define the model's default state.
+     *
+     * @return array<string, mixed>
+     */
+    public function definition(): array
+    {
+        return [
+            'date' => $this->faker->date(),
+            'time' => $this->faker->time(),
+            'is_available' => $this->faker->boolean(),
+        ];
+    }
+}
